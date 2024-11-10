@@ -3,6 +3,7 @@ import FormTextField from './components/FormTextField'
 import { useContext, useState } from 'react';
 import { loadUser, login } from '../services/authServices';
 import AuthContext from '../contexts/AuthContext';
+import Logo from './components/Logo';
 
 
 const LoginScreen = ({ navigation }) => {
@@ -38,6 +39,10 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ backgroundColor: "#fff", flex: 1 }}>
+
+      <View style={{ display: 'flex', justifyContent: 'center', marginTop: 30, alignItems: 'center' }}>
+        <Logo />
+      </View>
       <View style={{ padding: 20, rowGap: 16 }}>
         <FormTextField
           label="Email"
@@ -53,7 +58,7 @@ const LoginScreen = ({ navigation }) => {
           onChangeText={(text) => setPassword(text)}
           errors={errors.password}
         />
-        <Button title='Login' onPress={handleLogin} />
+        <Button width="50%" title='Login' onPress={handleLogin} />
         <Button title='Create an account' onPress={() => {
           navigation.navigate("Register")
         }} />

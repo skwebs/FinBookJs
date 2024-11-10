@@ -3,6 +3,7 @@ import FormTextField from './components/FormTextField'
 import { useContext, useState } from 'react';
 import { loadUser, register } from '../services/authServices';
 import AuthContext from '../contexts/AuthContext';
+import Logo from './components/Logo';
 
 
 const RegisterScreen = ({ navigation }) => {
@@ -44,8 +45,10 @@ const RegisterScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ backgroundColor: "#fff", flex: 1 }}>
+      <View style={{ display: 'flex', justifyContent: 'center', marginTop: 30, alignItems: 'center' }}>
+        <Logo />
+      </View>
       <View style={{ padding: 20, rowGap: 16 }}>
-
         <FormTextField
           label="Name"
           value={name}
