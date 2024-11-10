@@ -1,22 +1,16 @@
 import { Button, Platform, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
 import FormTextField from './components/FormTextField'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { loadUser, login } from '../services/authServices';
-import { getToken, removeToken, setToken } from '../services/tokenServices';
+import AuthContext from '../contexts/AuthContext';
 
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState({});
-
-  async function handleSetKeyChain() {
-    setToken("test");
-  }
-  async function handleGetKeyChain() {
-    console.log(await getToken());
-  }
+  const { setUser } = useContext(AuthContext);
 
   const handleLogin = async () => {
     setErrors({});
@@ -27,13 +21,10 @@ const LoginScreen = () => {
         device_name: `${Platform.OS} ${Platform.Version}`
       });
 
-      console.log(data.token);
+      console.log(token);
 
-      const { data: user } = await loadUser({
-        headers: {
-          Authorization: `Bearer ${data.token}`
-        }
-      });
+      const user = await loadUser();
+      setUser(user);
       console.log(user)
 
     } catch (er) {
@@ -63,9 +54,9 @@ const LoginScreen = () => {
           errors={errors.password}
         />
         <Button title='Login' onPress={handleLogin} />
-        <Button title='set' onPress={handleSetKeyChain} />
-        <Button title='get' onPress={handleGetKeyChain} />
-        <Button title='remove' onPress={() => removeToken()} />
+        <Button title='Create an account' onPress={() => {
+          navigation.navigate("Register")
+        }} />
       </View>
     </SafeAreaView>
   )
