@@ -1,5 +1,5 @@
 import axios from "../utils/axios";
-import { setToken } from "./tokenServices";
+import { getToken, setToken } from "./tokenServices";
 
 export async function login(credentials) {
   const { data } = await axios.post("/login", credentials);
@@ -13,8 +13,11 @@ export async function register(registerInfo) {
 }
 
 export async function loadUser() {
-  const { data: user } = await axios.get('user');
-  return user;
+  if (await getToken()) {
+    const { data: user } = await axios.get('/user');
+    return user;
+  }
+  return null;
 }
 
 export async function logout() {
