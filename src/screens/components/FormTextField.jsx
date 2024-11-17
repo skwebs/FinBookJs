@@ -1,5 +1,9 @@
+import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 const FormTextField = ({ label, errors = [], ...rest }) => {
+
+
+  const [focused, setFocused] = useState(false)
   return (
     <View>
       {label &&
@@ -11,14 +15,17 @@ const FormTextField = ({ label, errors = [], ...rest }) => {
 
       <TextInput
         style={{
-          backgroundColor: "#f1f5f9",
+          backgroundColor: "#f1f4ff",
           height: 40,
           marginTop: 4,
           borderWidth: 1,
-          borderRadius: 4,
-          borderColor: "#cbd5e1",
+          borderRadius: 8,
+          borderColor: focused ? "#2196F3" : "#cbd5e1",
           padding: 10
         }}
+
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
         {...rest}
       />
       {errors.map((err) => (

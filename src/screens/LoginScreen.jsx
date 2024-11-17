@@ -44,11 +44,17 @@ const LoginScreen = ({ navigation }) => {
         <Logo />
       </View>
       <View style={{ padding: 20, rowGap: 16 }}>
+        <View>
+          <Text style={{ fontWeight: 600, fontSize: 24, color: '#626262' }}>Login</Text>
+        </View>
+
         <FormTextField
           label="Email"
           value={email}
           onChangeText={(text) => setEmail(text)}
           keyboardType="email-address"
+          returnKeyType="next"
+          blurOnSubmit={false}
           errors={errors.email}
         />
         <FormTextField
@@ -58,7 +64,7 @@ const LoginScreen = ({ navigation }) => {
           onChangeText={(text) => setPassword(text)}
           errors={errors.password}
         />
-        <Button width="50%" title='Login' onPress={handleLogin} />
+        <Button title='Login' onPress={handleLogin} />
         <Button title='Create an account' onPress={() => {
           navigation.navigate("Register")
         }} />

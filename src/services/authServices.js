@@ -7,7 +7,6 @@ export async function login(credentials) {
 }
 
 export async function register(registerInfo) {
-  // console.warn(registerInfo)
   const { data } = await axios.post("/register", registerInfo);
   await setToken(data.token);
 }

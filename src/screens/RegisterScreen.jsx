@@ -1,4 +1,4 @@
-import { Button, Platform, SafeAreaView, StyleSheet, View } from 'react-native'
+import { Button, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import FormTextField from './components/FormTextField'
 import { useContext, useState } from 'react';
 import { loadUser, register } from '../services/authServices';
@@ -24,13 +24,13 @@ const RegisterScreen = ({ navigation }) => {
       password_confirmation: passwordConfirmation,
       device_name: `${Platform.OS} ${Platform.Version}`
     };
-    // console.log(regData)
+
     try {
       await register(regData);
 
       const userData = await loadUser();
       setUser(userData);
-      // console.log(user, userData)
+
       if (user) {
         navigation.replace("Home");
       }
@@ -49,6 +49,9 @@ const RegisterScreen = ({ navigation }) => {
         <Logo />
       </View>
       <View style={{ padding: 20, rowGap: 16 }}>
+        <View>
+          <Text style={{ fontWeight: 600, fontSize: 24, color: '#626262' }}>Create an account</Text>
+        </View>
         <FormTextField
           label="Name"
           value={name}
