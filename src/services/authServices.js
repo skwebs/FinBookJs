@@ -3,6 +3,8 @@ import { getToken, setToken } from "./tokenServices";
 
 export async function login(credentials) {
   const { data } = await axios.post("/login", credentials);
+  console.log('authServices > login > app url: ', Config.API_URL)
+  console.log('authServices>login: ', data)
   await setToken(data.token);
 }
 
