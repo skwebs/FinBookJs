@@ -1,15 +1,13 @@
-import axios from "../utils/axios";
-import { getToken, setToken } from "./tokenServices";
+import axios from '../utils/axios';
+import { getToken, setToken } from './tokenServices';
 
 export async function login(credentials) {
-  const { data } = await axios.post("/login", credentials);
-  console.log('authServices > login > app url: ', Config.API_URL)
-  console.log('authServices>login: ', data)
+  const { data } = await axios.post('/login', credentials);
   await setToken(data.token);
 }
 
 export async function register(registerInfo) {
-  const { data } = await axios.post("/register", registerInfo);
+  const { data } = await axios.post('/register', registerInfo);
   await setToken(data.token);
 }
 
@@ -22,6 +20,7 @@ export async function loadUser() {
 }
 
 export async function logout() {
-  await axios.post('logout', {})
+  await axios.post('logout', {});
   await setToken(null);
 }
+

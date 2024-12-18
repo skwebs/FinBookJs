@@ -1,5 +1,6 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import Logo from './components/Logo';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import Logo from '../components/Logo';
+import React from 'react';
 
 const SplashScreen = () => {
 
@@ -7,8 +8,8 @@ const SplashScreen = () => {
     <SafeAreaView style={styles.container}>
       <Logo />
     </SafeAreaView>
-  )
-}
+  );
+};
 
 
 const styles = StyleSheet.create({
@@ -20,4 +21,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default SplashScreen
+export default SplashScreen;
